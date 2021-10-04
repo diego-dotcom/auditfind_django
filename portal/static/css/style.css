@@ -1,0 +1,270 @@
+/* VARIABLES */
+
+:root {
+    --fuentePrincipal: 'Urbanist', sans-serif;
+    --fuenteSecundaria: 'PT Sans', sans-serif;
+    --primario: #2d05b4;
+    --secundario: #755acb ;
+    --terciario: #d0c8ee;
+    --complementario: #8CB405;
+    --triada2: #B42D05;
+    --triada3: #05B42D;
+    --blanco: #FFF;
+    --negro: #000;
+    --oscuro: #333;
+    --gris: #a3b3c1;
+    --gris-claro: #c0ccd6;
+    --color-twitter: #00acee;
+    --color-facebook: #3b5998;
+    --color-linkedin: #0e76a8;
+}
+
+/* GLOBALES */
+
+html {
+    box-sizing: border-box;
+    min-height: 100%;
+    
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--fuentePrincipal);
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none; 
+}
+
+
+img {
+    max-width: 100%;
+}
+
+
+/* HEADER */
+
+header {
+    border-top: .2rem solid var(--terciario);
+}
+
+.header__logo__imagen {
+    height: 10rem;
+    /* border-top: .1rem solid var(--primario);
+    border-bottom: .1rem solid var(--primario); */
+}
+
+.redes-twitter {
+    color: var(--color-twitter);
+}
+
+.redes-facebook {
+    color: var(--color-facebook);
+}
+
+.redes-linkedin {
+    color: var(--color-linkedin);
+}
+
+.redes > a:hover {
+    color: var(--complementario);
+}
+
+
+.navbar__boton-buscar {
+    border: 0;
+    color: var(--blanco);
+    background-color: var(--secundario);
+}
+
+.navbar__boton-buscar:hover {
+    background-color: var(--complementario);
+}
+
+.navbar {
+    /* border-top: .1rem solid var(--primario); */
+    border-bottom: .1rem solid var(--terciario);
+    height: 3.5rem;
+    font-size: .9rem;
+}
+
+/* .nav-link:hover {
+    font-weight: 600;
+} */
+
+
+
+
+/* HOME */
+
+.carousel, .carousel-item > img {
+    min-height: 12rem;
+}
+
+
+.carousel__titulo {
+    color: var(--negro);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    .carousel, .carousel-item > img {
+        max-height: 28rem;
+    }
+    .carousel__titulo {
+        color: var(--negro);
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+}
+
+
+.carousel__seccion {
+    color: var(--negro);
+    font-size: 1rem;
+}
+
+.carousel-caption {
+    background-color: var(--terciario);
+    border-radius: .5rem;
+}
+
+.home__secciones {
+    font-weight: 700;
+    color: var(--complementario);
+}
+
+.home__secciones__link {
+    color: var(--complementario);
+}
+
+.home__secciones__link:hover {
+    color: var(--primario);
+}
+
+/* ARTICULO */
+
+.banner {
+    margin-top: 1rem;
+    background-color: #f5f5f5;
+    border-radius: .25rem;
+    height: .1rem;
+}
+
+.nota {
+    font-family: var(--fuentePrincipal);
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+.nota__seccion {
+    color: var(--complementario);
+    font-weight: 700;
+}
+
+.nota__seccion:hover {
+    color: var(--complementario);
+}
+
+.nota__titulo {
+    font-weight: 700;
+}
+
+.nota__copete {
+    font-family: var(--fuenteSecundaria);
+
+}
+
+.nota__texto {
+    font-family: var(--fuenteSecundaria);
+    border-bottom: 1px solid var(--gris-claro);
+}
+
+.nota__autor {
+    font-family: var(--fuentePrincipal);
+    font-weight: 400;
+    color: var(--oscuro);
+    font-size: 1rem;
+    
+}
+
+.nota__autor__nombre {
+    color: var(--triada2);
+    font-weight: 700;
+}
+
+.nota__fecha {
+    border-bottom: 1px solid var(--gris-claro);
+}
+
+.pie__autor {
+    border-bottom: 1px solid var(--gris-claro);
+}
+
+.pie__imagen {
+    width: 100%;
+    max-height: 40rem;
+}
+
+.pie__autor__imagen {
+    max-width: 15rem;
+    border-radius: 50%;
+}
+
+
+.pie__autor__datos {
+    font-family: var(--fuentePrincipal);
+    font-weight: 700;
+}
+
+aside {
+    border-left: .1rem solid var(--gris-claro);
+}
+
+.aside__ultimas {
+    color: var(--triada2);
+    border-bottom: .1rem solid var(--gris-claro);
+}
+
+.aside__mininota {
+    border-bottom: .1rem solid var(--gris-claro);
+}
+
+.aside__mininota__titulo {
+    font-weight: 700;
+    color: var(--oscuro);
+}
+
+.aside__mininota__titulo:hover {
+    color: var(--oscuro);
+}
+
+.aside__mininota__seccion {
+    font-weight: 400;
+}
+
+
+
+/* FOOTER */
+
+footer {
+    border-top: .2rem solid var(--gris);
+    min-height: 10rem;
+    background-color: var(--gris);
+}
+
+.footer__logo {
+    max-height: 10rem;
+    max-width: 22rem;
+}
+
+.footer__texto {
+    color: var(--blanco);
+    background-color: var(--oscuro);
+}
+
