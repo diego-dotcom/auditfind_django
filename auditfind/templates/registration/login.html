@@ -1,0 +1,37 @@
+{% extends "portal/layout.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>El usuario y la clave no coinciden, por favor intente nuevamente.</p>
+{% endif %}
+
+<div class="wrapper fadeInDown">
+
+    <div id="formContent" class="d-flex flex-column align-items-center">
+
+        <h3 class="mt-5">Acceso administradores</h3>
+
+        <form class="mt-3 mb-5" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            <div class="mb-3 ">
+                <label for="titulo" class="form-label d-block">Usuario:</label> {{ form.username }}
+            </div>
+
+            <div class="mb-3 ">
+                <label for="titulo" class="form-label d-block">Contraseña:</label> {{ form.password }}
+            </div>
+
+            <div>
+                <input type="submit" class="fadeIn fourth btn btn-secondary" value="ACCEDER" />
+                <input type="hidden" name="next" value="{{ next }}" />
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

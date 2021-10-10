@@ -1,0 +1,30 @@
+{% extends "portal/layout.html" %}
+
+{% block content %}
+
+
+<div class="banner"></div>
+
+
+<div class="container-fluid row">
+    <h5>Sección:</h3>
+        <h4 class="aside__ultimas text-uppercase align-items-center">{{seccion}}</h4>
+
+
+        {% for articulo in lista_articulos %}
+
+        <div class="aside__mininota mt-3 pb-3 mb-3">
+            <h5><a href="{% url 'portal:articulo' articulo.id %}"
+                    class="aside__mininota__titulo">{{articulo.titulo}}</a></h5>
+            <p class="nota__copete">
+                {{articulo.copete}}
+            </p>
+            <p>{{articulo.fecha_publicacion}}</p>
+        </div>
+        {% empty %}
+        <h5 class="aside__mininota__titulo mt-3 mb-5">No hay artículos en esta sección.</h5>
+        {% endfor %}
+
+</div>
+
+{% endblock %}

@@ -2,9 +2,24 @@
 
 {% block content %}
 
+<div class="container ps-2">
+    <h4 class="aside__ultimas text-uppercase align-items-center mt-5">
+        Secciones
+    </h4>
+    <div class="d-flex flex-row flex-wrap justify-content-evenly home__secciones ps-2 mb-5">
+
+        {% for seccion in lista_secciones %}
+        <a href="{% url 'portal:filtro_secciones' seccion.id %}"
+            class="home__secciones__link fs-5 me-5">{{seccion.descripcion}}</a>
+        {% endfor %}
+
+    </div>
+
+</div>
+
 <div class="container-fluid row">
     <main class="col-lg-8">
-        <div id="carouselExampleCaptions" class="carousel slide mt-5 d-none d-md-block" data-bs-ride="carousel">
+        <div id="carouselExampleCaptions" class="carousel slide mt-2 d-none d-md-block" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
@@ -25,7 +40,7 @@
                         {% endif %}
                         <img src="{{ media_url }}{{ articulo.imagen.url }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption">
-                            <a href="/articulo.html">
+                            <a href="{% url 'portal:articulo' articulo.id %}">
                                 <h5 class="carousel__titulo m-2">{{articulo.titulo}}</h5>
                             </a>
                             <p class="carousel__seccion">{{articulo.seccion}}</p>
@@ -47,45 +62,20 @@
             </div>
     </main>
 
-    <aside class="col-lg-4 mt-5">
+    <aside class="col-lg-4 mt-2 mb-2">
         <h4 class="aside__ultimas text-uppercase align-items-center">Últimas notas</h4>
 
         {% for articulo in articulos %}
         <div class="aside__mininota mt-3 pb-3">
             <p class="aside__mininota__seccion">{{articulo.seccion}}</p>
-            <h5><a href="/articulo.html" class="aside__mininota__titulo">{{articulo.titulo}}</a></h5>
+            <h5><a href="{% url 'portal:articulo' articulo.id %}"
+                    class="aside__mininota__titulo">{{articulo.titulo}}</a></h5>
+            <p>{{articulo.fecha_publicacion}}</p>
         </div>
         {% endfor %}
 
     </aside>
 </div>
 
-
-
-
-
-
-
-
-<div class="container ps-2">
-    <h4 class="aside__ultimas text-uppercase align-items-center mt-5">
-        Secciones
-    </h4>
-    <div class="row home__secciones ps-2 mb-5">
-        <div class="col">
-            <p><a href="#" class="home__secciones__link">Auditoría</a></p>
-            <p><a href="#" class="home__secciones__link">Finanzas</a></p>
-        </div>
-        <div class="col">
-            <p><a href="#" class="home__secciones__link">Negocios</a></p>
-            <p><a href="#" class="home__secciones__link">Contabilidad</a></p>
-        </div>
-        <div class="col">
-            <p><a href="#" class="home__secciones__link">Tecnología</a></p>
-            <p><a href="#" class="home__secciones__link">Opinión</a></p>
-        </div>
-    </div>
-
-</div>
 
 {% endblock %}

@@ -7,11 +7,11 @@
 
 
 <div class="container-fluid row">
+    <h5 class="mt-3">Resultado de la búsqueda</h5>
+    <h4 class="aside__ultimas text-uppercase align-items-center">{{texto}}</h4>
 
-    <h4 class="aside__ultimas text-uppercase align-items-center">Todos los artículos</h4>
 
-
-    {% for articulo in articulos %}
+    {% for articulo in lista_articulos %}
 
     <div class="aside__mininota mt-3 pb-3 mb-3">
         <h5><a href="{% url 'portal:articulo' articulo.id %}" class="aside__mininota__titulo">{{articulo.titulo}}</a>
@@ -22,7 +22,7 @@
         <p>{{articulo.fecha_publicacion}}</p>
     </div>
     {% empty %}
-    <h5 class="aside__mininota__titulo mt-3 mb-5">No existen artículos</h5>
+    <h5 class="aside__mininota__titulo mt-3 mb-5">No hay artículos en esta sección.</h5>
     {% endfor %}
 
 </div>

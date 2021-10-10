@@ -16,6 +16,8 @@
     <link href="https://fonts.googleapis.com/css2?family=family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.tiny.cloud/1/9iz4gycvmy4lbqxyl79v2obpuve8n3f2a8846an69of3ec40/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -27,7 +29,7 @@
         <div class="container">
             <div class="row mb-1">
                 <div class="header__logo col-12 col-lg-4 justify-content-center mb-3 mb-lg-0">
-                    <a href="index.html"><img class="header__logo__imagen mx-auto d-block"
+                    <a href="{% url 'portal:home' %}"><img class="header__logo__imagen mx-auto d-block"
                             src="{% static 'img/Logo_Auditfind.png' %}" alt="Logo Auditfind"></a>
                 </div>
                 <div class="col-lg-4 d-flex align-items-center justify-content-center mb-3 mb-lg-0">
@@ -45,7 +47,7 @@
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark text-uppercase">
             <div class="container">
-                <a class="navbar-brand" href="/index.html"><i class="fas fa-home"></i></a>
+                <a class="navbar-brand" href="{% url 'portal:home' %}"><i class="fas fa-home"></i></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -60,16 +62,15 @@
                                 Artículos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/articulos.html">Ver todos</a></li>
+                                <li><a class="dropdown-item" href="{% url 'portal:articulos' %}">Ver todos</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Auditoría</a></li>
-                                <li><a class="dropdown-item" href="#">Finanzas</a></li>
-                                <li><a class="dropdown-item" href="#">Negocios</a></li>
-                                <li><a class="dropdown-item" href="#">Contabilidad</a></li>
-                                <li><a class="dropdown-item" href="#">Tecnología</a></li>
-                                <li><a class="dropdown-item" href="#">Opinión</a></li>
+                                {% for seccion in lista_secciones %}
+                                <li><a class="dropdown-item"
+                                        href="{% url 'portal:filtro_secciones' seccion.id %}">{{seccion.descripcion}}</a>
+                                </li>
+                                {% endfor %}
                             </ul>
                         </li>
                         <li class="nav-item dropdown ms-3">
@@ -88,10 +89,16 @@
                         <li class="nav-item ms-3">
                             <a class="nav-link active" href="#">Contacto</a>
                         </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item ms-3">
+                            <a class="nav-link active" href="#">Crear artículo</a>
+                        </li>
+                        {% endif %}
 
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control" type="search" aria-label="Search">
+                    <form class="d-flex" action="{% url 'portal:busqueda' %}" method="POST">
+                        {% csrf_token %}
+                        <input class="form-control" type="search" name="texto" aria-label="Search">
                         <button class="btn btn-outline-dark navbar__boton-buscar ms-1" type="submit">Buscar</button>
                     </form>
                 </div>
@@ -114,10 +121,21 @@
                     <a class="redes-facebook" href="#"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
                     <a class="redes-linkedin" href="#"><i class="fab fa-linkedin-in fa-lg"></i></a>
                 </div>
-                <div>
-                    <a href="#" class="btn btn-secondary footer__boton__login"> Iniciar sesión</a>
+
+                {% if user.is_authenticated %}
+                <div class="d-flex gap-3 align-items-center justify-content-center">
+                    <p class="mt-2">Estas conectado como: {{ user.get_username }}</p>
+                    <a class="btn btn-secondary footer__boton__login"
+                        href="{% url 'logout'%}?next={{request.path}}">Salir</a>
                 </div>
 
+
+                {% else %}
+                <div>
+                    <a href="{% url 'login'%}?next={{request.path}}" class="btn btn-secondary footer__boton__login">
+                        Iniciar sesión</a>
+                </div>
+                {% endif %}
             </div>
         </div>
         <p class="footer__texto pb-2 pt-2 mt-lg-1 mb-0 text-center text-uppercase">Copyright <span><i
@@ -133,6 +151,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>
