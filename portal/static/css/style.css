@@ -89,6 +89,10 @@ header {
     /* border-top: .1rem solid var(--primario); */
     border-bottom: .1rem solid var(--terciario);
     height: 3.5rem;
+    font-size: .8rem;
+}
+
+.dropdown-item {
     font-size: .9rem;
 }
 
