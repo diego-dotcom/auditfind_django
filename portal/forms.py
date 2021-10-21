@@ -1,16 +1,29 @@
 from django import forms
-from .models import Articulo
+from .models import Articulo, Autor
 
 
 class FormArticulo(forms.ModelForm):
     #campos del modelo
     class Meta:
         model = Articulo
-        fields = ('autor', 'seccion', 'titulo', 'copete', 'texto', 'imagen', 'fecha_publicacion')
+        fields = ('seccion', 'titulo', 'copete', 'texto', 'imagen', 'fecha_publicacion')
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'prod_titulo'}),
             'copete': forms.Textarea(attrs={'class': 'prod_copete'}),
             'texto': forms.Textarea(attrs={'class': 'prod_texto'}),
             'imagen': forms.FileInput(attrs={'name':'imagen_adjunta', 'class': 'articulo_imagen'}),
             'fecha_publicacion': forms.SelectDateWidget(attrs={'class': 'prod_fecha_publicacion'}),     
+        }
+
+class FormAutor(forms.ModelForm):
+    #campos del modelo
+    class Meta:
+        model = Autor
+        fields = ('usuario', 'nombre', 'bio', 'foto', 'link_linkedin', 'link_twitter')
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'autor_nombre'}),
+            'bio': forms.Textarea(attrs={'class': 'autor_bio'}),
+            'foto': forms.FileInput(attrs={'name':'imagen_adjunta', 'class': 'autor_imagen'}), 
+            'link_linkedin': forms.TextInput(attrs={'class': 'autor_linkedin'}),
+            'link_twitter': forms.TextInput(attrs={'class': 'autor_twitter'}),
         }

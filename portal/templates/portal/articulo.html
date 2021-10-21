@@ -15,7 +15,7 @@
         <p class="nota__copete">
             {{articulo.copete}}
         </p>
-        <h5 class="nota__autor mt-3">Por <span class="nota__autor__nombre">{{articulo.autor}}</span></h5>
+        <h5 class="nota__autor mt-3">Por <span class="nota__autor__nombre">{{autor.nombre}}</span></h5>
         <p class="nota__fecha pb-2">{{articulo.fecha_publicacion}}</p>
 
         <img class="nota__imagen mt-2 pe-3" src="{{ media_url }}{{ articulo.imagen.url }}" alt="imagen">
@@ -25,13 +25,16 @@
         </div>
 
         <div class="pie__autor d-flex align-items-center mt-5 pb-5 flex-column flex-sm-row">
-            <img class="pie__autor__imagen" src="/img/perfil.png" alt="Foto del autor">
+            <img class="pie__autor__imagen" src="{{ media_url }}{{ autor.foto.url }}" alt="Foto del autor">
+            {{autor.imagen}}
             <div class="pie__autor__datos ms-3 mt-2 mt-sm-0">
-                <h5 class="text-center">Héctor D. Ciganek</h5>
-                <p class="text-center">Contador Público</p>
+                <h5>{{autor.nombre}}</h5>
+                <div>{{autor.bio}}</div>
                 <div class="redes d-flex justify-content-around">
-                    <a class="redes-linkedin" href="#"><i class="fab fa-linkedin-in fa-lg"></i></a>
-                    <a class="redes-twitter" href="#"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a class="redes-linkedin" target="_blank" href="{{ autor.link_linkedin }}"><i
+                            class="fab fa-linkedin-in fa-lg"></i></a>
+                    <a class="redes-twitter" target="_blank" href="{{ autor.link_twitter }}"><i
+                            class="fab fa-twitter fa-lg"></i></a>
                 </div>
 
             </div>

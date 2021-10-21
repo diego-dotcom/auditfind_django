@@ -66,6 +66,18 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
+                                {% if user.is_authenticated %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'portal:articulo_nuevo' %}">Crear
+                                        artículo</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Crear autor</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                {% endif %}
                                 {% for seccion in lista_secciones %}
                                 <li><a class="dropdown-item"
                                         href="{% url 'portal:filtro_secciones' seccion.id %}">{{seccion.descripcion}}</a>
@@ -89,17 +101,14 @@
                         <li class="nav-item ms-3">
                             <a class="nav-link active" href="#">Contacto</a>
                         </li>
-                        {% if user.is_authenticated %}
-                        <li class="nav-item ms-3">
-                            <a class="nav-link active" href="#">Crear artículo</a>
-                        </li>
-                        {% endif %}
+
 
                     </ul>
                     <form class="d-flex" action="{% url 'portal:busqueda' %}" method="POST">
                         {% csrf_token %}
                         <input class="form-control" type="search" name="texto" aria-label="Search">
-                        <button class="btn btn-outline-dark navbar__boton-buscar ms-1" type="submit">Buscar</button>
+                        <button class="btn btn-outline-dark btn-sm navbar__boton-buscar ms-1"
+                            type="submit">Buscar</button>
                     </form>
                 </div>
             </div>
