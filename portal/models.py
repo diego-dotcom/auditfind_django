@@ -17,7 +17,7 @@ class Articulo(models.Model):
     titulo = models.CharField(max_length=100)
     copete = models.TextField()
     texto = models.TextField()
-    imagen = models.FileField(upload_to='img_articulos/', blank= True)
+    imagen = models.FileField(upload_to='img_articulos/')
     fecha_publicacion = models.DateField(null=False)
 
     def publicar(self):

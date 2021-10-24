@@ -86,10 +86,10 @@ header {
 }
 
 .navbar {
-    /* border-top: .1rem solid var(--primario); */
     border-bottom: .1rem solid var(--terciario);
     height: 3.5rem;
     font-size: .8rem;
+    z-index: 1;
 }
 
 .dropdown-item {
@@ -273,6 +273,28 @@ footer {
     background-color: var(--oscuro);
 }
 
+
+/* NOSOTROS */
+
+.nosotros__titulo {
+    font-weight: 700;
+    color: var(--primario);
+    text-transform: uppercase;
+}
+
+.nosotros__conceptos {
+    font-weight: 700;
+    color: var(--triada2);
+}
+
+.nosotros__texto {
+    font-size: 1rem;
+    font-family: var(--fuenteSecundaria);
+}
+
+.nosotros__lista {
+    list-style: none;
+}
 
 /* Animaciones login */
 

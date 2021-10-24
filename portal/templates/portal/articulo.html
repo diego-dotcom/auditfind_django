@@ -18,27 +18,42 @@
         <h5 class="nota__autor mt-3">Por <span class="nota__autor__nombre">{{autor.nombre}}</span></h5>
         <p class="nota__fecha pb-2">{{articulo.fecha_publicacion}}</p>
 
+        <div class="d-flex justify-content-around mb-3">
+            <a class="btn btn-success btn-sm" href="{% url 'portal:articulo_editar' articulo.id %}">Editar Artículo</a>
+            <a class="btn btn-danger btn-sm" href="{% url 'portal:articulo_eliminar' articulo.id %}"
+                onclick="return confirm('Confirma que desea eliminar el artículo?')">Eliminar
+                Artículo</a>
+        </div>
+
         <img class="nota__imagen mt-2 pe-3" src="{{ media_url }}{{ articulo.imagen.url }}" alt="imagen">
 
         <div class="nota__texto mt-5 me-2 pb-5">
             {{articulo.texto}}
         </div>
 
+        {% if user.is_authenticated %}
+
+
+
+
+        {% endif %}
+
         <div class="pie__autor d-flex align-items-center mt-5 pb-5 flex-column flex-sm-row">
             <img class="pie__autor__imagen" src="{{ media_url }}{{ autor.foto.url }}" alt="Foto del autor">
             {{autor.imagen}}
             <div class="pie__autor__datos ms-3 mt-2 mt-sm-0">
-                <h5>{{autor.nombre}}</h5>
-                <div>{{autor.bio}}</div>
-                <div class="redes d-flex justify-content-around">
+                <h5 class="mt-2 d-flex justify-content-center justify-content-sm-start">{{autor.nombre}}</h5>
+                <div class="mt-2">{{autor.bio}}</div>
+                <div class="redes d-flex justify-content-center ms-3 mt-3">
                     <a class="redes-linkedin" target="_blank" href="{{ autor.link_linkedin }}"><i
-                            class="fab fa-linkedin-in fa-lg"></i></a>
-                    <a class="redes-twitter" target="_blank" href="{{ autor.link_twitter }}"><i
+                            class="fab fa-linkedin-in fa-lg me-5"></i></a>
+                    <a class="redes-twitter ps-2" target="_blank" href="{{ autor.link_twitter }}"><i
                             class="fab fa-twitter fa-lg"></i></a>
                 </div>
 
             </div>
         </div>
+
 
     </main>
 

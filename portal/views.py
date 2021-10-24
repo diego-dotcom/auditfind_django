@@ -31,6 +31,11 @@ def articulo(request, articulo_id):
         "autor" : autor,
     })
 
+
+def nosotros(request):
+    return render(request, "portal/nosotros.html", {})
+
+
 @login_required
 def articulo_nuevo(request):
     if request.method == "POST":
@@ -41,12 +46,40 @@ def articulo_nuevo(request):
             articulo.autor = request.user
             articulo.save()
             messages.success(request, f'Artículo publicado con éxito')
-            return redirect("portal:home")          
+            return redirect('portal:home')          
     else:
         form = FormArticulo(initial={'fecha_publicacion':timezone.now()})
         return render(request, "portal/articulo_nuevo.html", {
         "form": form,
     })
+
+
+@login_required
+def articulo_editar(request, articulo_id):
+    un_articulo = get_object_or_404(Articulo, id=articulo_id)
+    if request.method == "POST":  
+        # user = User.objects.get(username=request.user)   
+        # un_articulo.editor = user
+        form = FormArticulo(data=request.POST, files=request.FILES, instance=un_articulo)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Articulo modificado con éxito')
+            return redirect("portal:home")
+    else:
+        form = FormArticulo(instance = un_articulo)
+        return render(request, 'portal/articulo_editar.html', {
+            "articulo": un_articulo,
+            "form": form
+        })
+
+
+@login_required
+def articulo_eliminar(request, articulo_id):
+    un_articulo = get_object_or_404(Articulo, id=articulo_id)
+    un_articulo.delete()
+    messages.success(request, f'Articulo eliminado con éxito')
+    return redirect("portal:home")
+
 
 def filtro_secciones(request, seccion_id):
     seccion = get_object_or_404(Seccion, id=seccion_id)
