@@ -1,5 +1,6 @@
 from django import forms
 from .models import Articulo, Autor
+from django.forms.widgets import Textarea
 
 
 class FormArticulo(forms.ModelForm):
@@ -27,3 +28,9 @@ class FormAutor(forms.ModelForm):
             'link_linkedin': forms.TextInput(attrs={'class': 'autor_linkedin'}),
             'link_twitter': forms.TextInput(attrs={'class': 'autor_twitter'}),
         }
+
+
+class FormContacto(forms.Form):
+    nombre=forms.CharField(label="Nombre",required=True)
+    mail=forms.CharField(label="Email",required=True)
+    consulta=forms.CharField(label="Consulta",required=True, widget=forms.Textarea)

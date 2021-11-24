@@ -5,6 +5,8 @@ from django.db.models import Q
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 
@@ -34,6 +36,35 @@ def articulo(request, articulo_id):
 
 def nosotros(request):
     return render(request, "portal/nosotros.html", {})
+
+
+def contacto(request):
+
+    form = FormContacto(request.POST)   
+
+    if request.method == "POST":
+
+        if form.is_valid():
+            nombre=request.POST["nombre"]
+            mail=request.POST["mail"]
+            consulta=request.POST["consulta"]
+
+            mensaje = f"Usuario: \n{nombre} \n\nCorreo electrónico: \n{mail} \n\nMensaje: \n{consulta}"
+
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = settings.EMAIL_HOST_USER
+
+
+            send_mail("Consulta desde la web", mensaje, email_from, [recipient_list], fail_silently=False,)
+            messages.success(request, f'Mensaje enviado con éxito')
+
+            return redirect('portal:home')  
+
+    else:
+
+        return render(request, "portal/contacto.html", {'form':form})        
+
+        
 
 
 @login_required
