@@ -32,5 +32,5 @@ class FormAutor(forms.ModelForm):
 
 class FormContacto(forms.Form):
     nombre=forms.CharField(label="Nombre",required=True)
-    mail=forms.CharField(label="Email",required=True)
+    email=forms.CharField(label="Email",required=True)
     consulta=forms.CharField(label="Consulta",required=True, widget=forms.Textarea)

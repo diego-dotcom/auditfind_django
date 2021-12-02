@@ -46,7 +46,7 @@ def contacto(request):
 
         if form.is_valid():
             nombre=request.POST["nombre"]
-            mail=request.POST["mail"]
+            mail=request.POST["email"]
             consulta=request.POST["consulta"]
 
             mensaje = f"Usuario: \n{nombre} \n\nCorreo electrónico: \n{mail} \n\nMensaje: \n{consulta}"

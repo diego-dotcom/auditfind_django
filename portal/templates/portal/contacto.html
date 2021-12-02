@@ -3,24 +3,27 @@
 {% block content %}
 
 
-<div class="container p-3">
+<div class="container formulario-contacto">
 
     <h3 class="mt-5">Contacto</h3>
+    <p>A la brevedad nos estaremos comunicando con usted</p>
 
     <form class="mt-3 mb-5 row" enctype="multipart/form-data" action="{% url 'portal:contacto' %}" method="post">
         {% csrf_token %}
 
 
-
         <div class="mb-3 ">
-            <label for="nombre" class="form-label d-block">Nombre:</label> {{ form.nombre }}
+            <label for="nombre" class="form-label d-block">Nombre:</label>
+            <input type="text" name="nombre" class="form-control">
         </div>
 
         <div class="mb-3 ">
-            <label for="email" class="form-label d-block">Email:</label> {{ form.mail }}
+            <label for="email" class="form-label d-block">Email:</label>
+            <input type="text" name="email" class="form-control">
         </div>
         <div class="mb-3">
-            <label for="consulta" class="form-label d-block">Mensaje:</label> {{ form.consulta }}
+            <label for="consulta" class="form-label d-block">Mensaje:</label>
+            <textarea name="consulta" class="form-control" rows=3></textarea>
         </div>
 
 

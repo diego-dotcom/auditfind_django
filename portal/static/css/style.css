@@ -96,9 +96,6 @@ header {
     font-size: .9rem;
 }
 
-/* .nav-link:hover {
-    font-weight: 600;
-} */
 
 
 
@@ -279,7 +276,7 @@ footer {
 .nosotros__titulo {
     font-weight: 700;
     color: var(--primario);
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .nosotros__conceptos {
@@ -294,6 +291,18 @@ footer {
 
 .nosotros__lista {
     list-style: none;
+}
+
+
+/* CONTACTO */
+
+.formulario-contacto {
+    padding: 1rem 1rem;
+}
+@media (min-width: 768px) {
+    .formulario-contacto {
+        padding: .5rem 8rem;
+    }
 }
 
 /* Animaciones login */
