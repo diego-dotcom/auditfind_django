@@ -1,0 +1,60 @@
+{% extends "portal/layout.html" %}
+
+{% block content %}
+
+<div class="container formulario">
+    <h3 class="mt-5">Editar datos de Autor</h3>
+
+    <form class="mt-5 row" enctype="multipart/form-data" action="{% url 'portal:autor_editar'%}" method="post">
+        {% csrf_token %}
+
+        <div class="row mb-3">
+
+            <div class="col-xl-6">
+                <div class="mb-3 ">
+                    <label for="nombre" class="form-label d-block">Nombre y apellido:</label>
+                    {{ form.nombre }}
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="bio" class="form-label d-block">Bio:</label>
+                    {{ form.bio }}
+                </div>
+            </div>
+
+            <div class="col-xl-6">
+                <div class="mb-3">
+                    <label for="foto" class="form-label d-block">Foto:</label> {{ form.foto }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="link_linkedin" class="form-label d-block">Perfil de Linkedin:</label>
+                    {{ form.link_linkedin}}
+                </div>
+
+                <div class="mb-3">
+                    <label for="link_twitter" class="form-label d-block">Perfil Twitter:</label>
+                    {{ form.link_twitter}}
+                </div>
+                <div class="col mt-5 mb-3 d-flex">
+                    <a class="btn btn-secondary" type="button" href="{% url 'portal:home'%}">Volver</a>
+                    <input type="submit" class="btn btn-success ms-3" value="Guardar cambios">
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+</div>
+
+
+
+
+</form>
+
+
+
+{% endblock %}

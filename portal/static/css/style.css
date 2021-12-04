@@ -45,6 +45,14 @@ img {
     max-width: 100%;
 }
 
+.formulario {
+    padding: 1rem 1rem;
+}
+@media (min-width: 768px) {
+    .formulario {
+        padding: .5rem 8rem;
+    }
+}
 
 /* HEADER */
 
@@ -222,6 +230,7 @@ header {
 .pie__autor__datos {
     font-family: var(--fuentePrincipal);
     font-weight: 700;
+    white-space: pre-line;
 }
 
 aside {
@@ -286,7 +295,7 @@ footer {
 
 .nosotros__texto {
     font-size: 1rem;
-    font-family: var(--fuenteSecundaria);
+    font-family: var(--fuentePrincipal);
 }
 
 .nosotros__lista {
@@ -294,16 +303,9 @@ footer {
 }
 
 
-/* CONTACTO */
 
-.formulario-contacto {
-    padding: 1rem 1rem;
-}
-@media (min-width: 768px) {
-    .formulario-contacto {
-        padding: .5rem 8rem;
-    }
-}
+
+
 
 /* Animaciones login */
 

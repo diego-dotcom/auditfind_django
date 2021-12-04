@@ -20,7 +20,7 @@ class FormAutor(forms.ModelForm):
     #campos del modelo
     class Meta:
         model = Autor
-        fields = ('usuario', 'nombre', 'bio', 'foto', 'link_linkedin', 'link_twitter')
+        fields = ('nombre', 'bio', 'foto', 'link_linkedin', 'link_twitter')
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'autor_nombre'}),
             'bio': forms.Textarea(attrs={'class': 'autor_bio'}),

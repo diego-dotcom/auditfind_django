@@ -2,8 +2,8 @@
 
 {% block content %}
 
-<div class="container">
-    <h3 class="mt-5 text-center">Editar un Artículo</h3>
+<div class="container formulario">
+    <h3 class="mt-5">Editar un Artículo</h3>
 
     <form class="mt-5 row" enctype="multipart/form-data" action="{% url 'portal:articulo_editar' articulo.id %}"
         method="post">
@@ -39,7 +39,7 @@
 
             <div class="col mt-5 mb-3 d-flex">
                 <a class="btn btn-secondary" type="button" href="{% url 'portal:home'%}">Volver</a>
-                <input type="submit" class="btn btn-success ms-3" value="Publicar">
+                <input type="submit" class="btn btn-success ms-3" value="Guardar cambios">
             </div>
 
 

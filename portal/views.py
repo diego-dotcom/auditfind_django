@@ -112,6 +112,30 @@ def articulo_eliminar(request, articulo_id):
     return redirect("portal:home")
 
 
+@login_required
+def autor_editar(request):
+    try:
+        user = User.objects.get(username=request.user)
+        autor = get_object_or_404(Autor, usuario_id=user.id)
+        if request.method == "POST":
+            form = FormAutor(data=request.POST, files=request.FILES, instance=autor)
+            if form.is_valid():
+                autor = form.save(commit=False)
+                autor.usuario = request.user
+                autor.save()
+                messages.success(request, f'Autor editado con éxito')
+                return redirect('portal:home')  
+        else:
+            form = FormAutor(instance = autor)
+            return render(request, 'portal/autor_editar.html', {
+            "autor": autor,
+            "form": form,
+        })
+    except:
+        messages.error(request, f'No existe autor, contacte con el Administrador')
+        return redirect('portal:home')  
+
+
 def filtro_secciones(request, seccion_id):
     seccion = get_object_or_404(Seccion, id=seccion_id)
     queryset = Articulo.objects.all()
