@@ -38,9 +38,11 @@
                 </div>
 
                 <nav class="redes col-lg-4 d-flex align-items-center justify-content-center mb-3 mb-lg-0">
-                    <a class="redes-twitter" href="#"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                    <a class="redes-facebook" href="#"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
-                    <a class="redes-linkedin" href="#"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    <a class="redes-twitter" target="_blank" href="#"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                    <a class="redes-facebook" target="_blank" href="#"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                    <a class="redes-linkedin" target="_blank" href="#"><i class="fab fa-linkedin-in fa-lg me-3"></i></a>
+                    <a class="redes-instagram" target="_blank" href="https://www.instagram.com/auditfind/"><i
+                            class="fab fa-instagram fa-lg"></i></a>
                 </nav>
             </div>
         </div>
@@ -71,8 +73,9 @@
                                         href="{% url 'portal:filtro_secciones' seccion.id %}">{{seccion.descripcion}}</a>
                                 </li>
                                 {% endfor %}
-                                <hr class="dropdown-divider">
+
                                 {% if user.is_authenticated %}
+                                <hr class="dropdown-divider">
                                 <li>
                                     <a class="dropdown-item" href="{% url 'portal:autor_editar' %}">Editar mis datos</a>
                                 </li>
@@ -139,9 +142,11 @@
 
             <div class="col-lg-6 mt-5 mt-lg-1 mb-5 mb-lg-0 text-center">
                 <div class="redes mb-4">
-                    <a class="redes-twitter" href="#"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                    <a class="redes-facebook" href="#"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
-                    <a class="redes-linkedin" href="#"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    <a class="redes-twitter" target="_blank" href="#"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                    <a class="redes-facebook" target="_blank" href="#"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                    <a class="redes-linkedin" target="_blank" href="#"><i class="fab fa-linkedin-in fa-lg me-3"></i></a>
+                    <a class="redes-instagram" target="_blank" href="https://www.instagram.com/auditfind/"><i
+                            class="fab fa-instagram fa-lg"></i></a>
                 </div>
 
                 {% if user.is_authenticated %}

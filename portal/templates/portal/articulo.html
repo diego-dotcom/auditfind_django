@@ -18,7 +18,7 @@
         <h5 class="nota__autor mt-3">Por <span class="nota__autor__nombre">{{autor.nombre}}</span></h5>
         <p class="nota__fecha pb-2">{{articulo.fecha_publicacion}}</p>
 
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and user.id == autor.usuario_id %}
 
         <div class="d-flex justify-content-around mb-3">
             <a class="btn btn-success btn-sm" href="{% url 'portal:articulo_editar' articulo.id %}">Editar Artículo</a>
@@ -55,8 +55,6 @@
 
             </div>
         </div>
-
-
     </main>
 
     <aside class="col-lg-4 mt-5 mt-lg-1">

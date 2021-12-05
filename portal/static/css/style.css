@@ -17,6 +17,7 @@
     --color-twitter: #00acee;
     --color-facebook: #3b5998;
     --color-linkedin: #0e76a8;
+    --color-instagram: #8134AF;
 }
 
 /* GLOBALES */
@@ -76,6 +77,10 @@ header {
 
 .redes-linkedin {
     color: var(--color-linkedin);
+}
+
+.redes-instagram {
+    color: var(--color-instagram);
 }
 
 .redes > a:hover {

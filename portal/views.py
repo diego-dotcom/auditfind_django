@@ -22,6 +22,7 @@ def articulos(request):
         'articulos': articulos,
     })
 
+
 def articulo(request, articulo_id):
     articulos_aside = Articulo.objects.filter(fecha_publicacion__lte=timezone.now()).order_by('-fecha_publicacion')[:3]
     articulo = get_object_or_404(Articulo, id=articulo_id)
@@ -69,20 +70,26 @@ def contacto(request):
 
 @login_required
 def articulo_nuevo(request):
-    if request.method == "POST":
+    try:
         user = User.objects.get(username=request.user)
-        form = FormArticulo(request.POST, request.FILES)      
-        if form.is_valid():
-            articulo = form.save(commit=False)
-            articulo.autor = request.user
-            articulo.save()
-            messages.success(request, f'Artículo publicado con éxito')
-            return redirect('portal:home')          
-    else:
-        form = FormArticulo(initial={'fecha_publicacion':timezone.now()})
-        return render(request, "portal/articulo_nuevo.html", {
-        "form": form,
-    })
+        if request.method == "POST":
+            form = FormArticulo(request.POST, request.FILES)      
+            if form.is_valid():
+                articulo = form.save(commit=False)
+                articulo.autor = request.user
+                articulo.save()
+                messages.success(request, f'Artículo publicado con éxito')
+                return redirect('portal:home')          
+        else:
+            form = FormArticulo(initial={'fecha_publicacion':timezone.now()})
+            autor = get_object_or_404(Autor, usuario_id=user.id)
+            return render(request, "portal/articulo_nuevo.html", {
+            "form": form,
+            "autor": autor,
+        })
+    except:
+        messages.error(request, f'No existe autor, contacte con el Administrador')
+        return redirect('portal:home') 
 
 
 @login_required
