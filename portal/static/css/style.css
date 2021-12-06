@@ -18,6 +18,7 @@
     --color-facebook: #3b5998;
     --color-linkedin: #0e76a8;
     --color-instagram: #8134AF;
+    --color-whatsapp: #128C7E;
 }
 
 /* GLOBALES */
@@ -81,6 +82,10 @@ header {
 
 .redes-instagram {
     color: var(--color-instagram);
+}
+
+.redes-whatsapp {
+    color: var(--color-whatsapp);
 }
 
 .redes > a:hover {
@@ -213,9 +218,6 @@ header {
     font-weight: 700;
 }
 
-.nota__fecha {
-    border-bottom: 1px solid var(--gris-claro);
-}
 
 .pie__autor {
     border-bottom: 1px solid var(--gris-claro);

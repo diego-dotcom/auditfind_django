@@ -27,11 +27,14 @@ def articulo(request, articulo_id):
     articulos_aside = Articulo.objects.filter(fecha_publicacion__lte=timezone.now()).order_by('-fecha_publicacion')[:3]
     articulo = get_object_or_404(Articulo, id=articulo_id)
     autor = Autor.objects.get(usuario=articulo.autor)
+    path = request.get_full_path()
+    url = f"https://auditfind.pythonanywhere.com{path}"
 
     return render(request, "portal/articulo.html", {
         "articulo": articulo,
         "articulos_aside": articulos_aside,
         "autor" : autor,
+        "url": url,
     })
 
 
