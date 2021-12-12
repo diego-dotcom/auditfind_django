@@ -1,11 +1,9 @@
 from django import forms
 from .models import Articulo, Autor
-from django.forms.widgets import Textarea
 from django.contrib.auth.models import User
 
 
 class FormArticulo(forms.ModelForm):
-    #campos del modelo
     class Meta:
         model = Articulo
         fields = ('seccion', 'titulo', 'copete', 'texto', 'imagen', 'fecha_publicacion')
@@ -18,11 +16,23 @@ class FormArticulo(forms.ModelForm):
         }
 
 class FormAutor(forms.ModelForm):
-    #campos del modelo
     class Meta:
         model = Autor
         fields = ('nombre', 'bio', 'foto', 'link_linkedin', 'link_twitter')
         widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'autor_nombre'}),
+            'bio': forms.Textarea(attrs={'class': 'autor_bio'}),
+            'foto': forms.FileInput(attrs={'name':'imagen_adjunta', 'class': 'autor_imagen'}), 
+            'link_linkedin': forms.TextInput(attrs={'class': 'autor_linkedin'}),
+            'link_twitter': forms.TextInput(attrs={'class': 'autor_twitter'}),
+        }
+
+class FormNuevoAutor(forms.ModelForm):
+    class Meta:
+        model = Autor
+        fields = ('usuario', 'nombre', 'bio', 'foto', 'link_linkedin', 'link_twitter')
+        widgets = {
+            'usuario': forms.Select(),
             'nombre': forms.TextInput(attrs={'class': 'autor_nombre'}),
             'bio': forms.Textarea(attrs={'class': 'autor_bio'}),
             'foto': forms.FileInput(attrs={'name':'imagen_adjunta', 'class': 'autor_imagen'}), 

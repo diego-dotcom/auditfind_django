@@ -40,7 +40,7 @@
         </div>
 
 
-        {% if user.is_authenticated and user.id == autor.usuario_id %}
+        {% if user.is_authenticated and user.id == autor.usuario_id or user.is_staff %}
 
         <div class="d-flex justify-content-around mb-3">
             <a class="btn btn-success btn-sm" href="{% url 'portal:articulo_editar' articulo.id %}">Editar Artículo</a>
@@ -69,9 +69,9 @@
                 <h5 class="mt-2 d-flex justify-content-center justify-content-sm-start">{{autor.nombre}}</h5>
                 <div class="mt-2">{{autor.bio}}</div>
                 <div class="redes d-flex justify-content-center ms-3 mt-3">
-                    <a class="redes-linkedin" target="_blank" href="{{ autor.link_linkedin }}"><i
+                    <a class="redes-linkedin" target="_blank" href="https://{{ autor.link_linkedin }}"><i
                             class="fab fa-linkedin-in fa-lg me-5"></i></a>
-                    <a class="redes-twitter ps-2" target="_blank" href="{{ autor.link_twitter }}"><i
+                    <a class="redes-twitter ps-2" target="_blank" href="https://{{ autor.link_twitter }}"><i
                             class="fab fa-twitter fa-lg"></i></a>
                 </div>
 

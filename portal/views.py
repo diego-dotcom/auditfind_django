@@ -124,33 +124,28 @@ def articulo_eliminar(request, articulo_id):
     return redirect("portal:home")
 
 
-@login_required
+@staff_member_required
 def autor_nuevo(request):
     try:
-        user = User.objects.get(username=request.user)
-        autor = get_object_or_404(Autor, usuario_id=user.id)
         if request.method == "POST":
-            form = FormAutor(data=request.POST, files=request.FILES, instance=autor)
+            form = FormNuevoAutor(data=request.POST, files=request.FILES)
             if form.is_valid():
                 autor = form.save(commit=False)
-                autor.usuario = request.user
                 autor.save()
-                messages.success(request, f'Autor editado con éxito')
+                messages.success(request, f'Autor creado con éxito')
                 return redirect('portal:home')  
         else:
-            form = FormAutor(instance = autor)
-            return render(request, 'portal/autor_editar.html', {
-            "autor": autor,
+            form = FormNuevoAutor()
+            return render(request, 'portal/autor_nuevo.html', {
             "form": form,
         })
     except:
-        messages.error(request, f'No existe autor, contacte con el Administrador')
+        messages.error(request, f'Ha ocurrido un error, contacte con el Administrador')
         return redirect('portal:home')
 
 
 @login_required
 def autor_editar(request):
-    form = RegisterForm(request.POST or None)
     try:
         user = User.objects.get(username=request.user)
         autor = get_object_or_404(Autor, usuario_id=user.id)

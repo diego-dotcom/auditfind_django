@@ -12,6 +12,7 @@ urlpatterns = [
     path('articulo_editar/<int:articulo_id>', views.articulo_editar, name="articulo_editar"),
     path('articulo_eliminar/<int:articulo_id>', views.articulo_eliminar, name="articulo_eliminar"),
     path('autor_editar', views.autor_editar, name="autor_editar"),
+    path('autor_nuevo', views.autor_nuevo, name="autor_nuevo"),
     path('filtro_secciones/<int:seccion_id>', views.filtro_secciones, name="filtro_secciones"),
     path('busqueda', views.busqueda, name="busqueda"),
     path('registro', views.registro, name='registro'),
