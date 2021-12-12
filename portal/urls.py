@@ -14,4 +14,5 @@ urlpatterns = [
     path('autor_editar', views.autor_editar, name="autor_editar"),
     path('filtro_secciones/<int:seccion_id>', views.filtro_secciones, name="filtro_secciones"),
     path('busqueda', views.busqueda, name="busqueda"),
+    path('registro', views.registro, name='registro'),
 ]

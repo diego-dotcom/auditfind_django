@@ -6,7 +6,7 @@
 <div class="banner"></div>
 
 
-<div class="container-fluid row">
+<div class="container-fluid ms-md-5 mt-md-3 row">
 
     <h4 class="aside__ultimas text-uppercase align-items-center">Todos los artículos</h4>
 
@@ -24,6 +24,21 @@
     {% empty %}
     <h5 class="aside__mininota__titulo mt-3 mb-5">No existen artículos</h5>
     {% endfor %}
+
+</div>
+
+<div class="container w-75 ps-2">
+    <h4 class="aside__ultimas text-uppercase align-items-center mt-5">
+        Secciones
+    </h4>
+    <div class="d-flex flex-row flex-wrap justify-content-evenly home__secciones ps-2 mb-5">
+
+        {% for seccion in lista_secciones %}
+        <a href="{% url 'portal:filtro_secciones' seccion.id %}"
+            class="home__secciones__link fs-5 me-5">{{seccion.descripcion}}</a>
+        {% endfor %}
+
+    </div>
 
 </div>
 

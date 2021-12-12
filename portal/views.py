@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth import login
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 
@@ -123,7 +125,32 @@ def articulo_eliminar(request, articulo_id):
 
 
 @login_required
+def autor_nuevo(request):
+    try:
+        user = User.objects.get(username=request.user)
+        autor = get_object_or_404(Autor, usuario_id=user.id)
+        if request.method == "POST":
+            form = FormAutor(data=request.POST, files=request.FILES, instance=autor)
+            if form.is_valid():
+                autor = form.save(commit=False)
+                autor.usuario = request.user
+                autor.save()
+                messages.success(request, f'Autor editado con éxito')
+                return redirect('portal:home')  
+        else:
+            form = FormAutor(instance = autor)
+            return render(request, 'portal/autor_editar.html', {
+            "autor": autor,
+            "form": form,
+        })
+    except:
+        messages.error(request, f'No existe autor, contacte con el Administrador')
+        return redirect('portal:home')
+
+
+@login_required
 def autor_editar(request):
+    form = RegisterForm(request.POST or None)
     try:
         user = User.objects.get(username=request.user)
         autor = get_object_or_404(Autor, usuario_id=user.id)
@@ -165,4 +192,23 @@ def busqueda(request):
     return render(request,"portal/busqueda.html", {
         "lista_articulos": lista,
         "texto": texto,
+    })
+
+
+@staff_member_required
+def registro(request):
+    form = RegisterForm(request.POST or None)
+    # Si el formulario está completo completa el form con esos datos, si no lo completa vacío
+
+    if request.method == 'POST' and form.is_valid():
+
+        user = form.save()
+
+        if user:
+            login(request, user)
+            messages.success(request, "Usuario creado exitosamente")
+            return redirect('portal:home')
+
+    return render(request, 'portal/registro.html', {
+        'form': form,
     })

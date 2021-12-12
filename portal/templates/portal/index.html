@@ -2,23 +2,10 @@
 
 {% block content %}
 
-<div class="container ps-2">
-    <h4 class="aside__ultimas text-uppercase align-items-center mt-5">
-        Secciones
-    </h4>
-    <div class="d-flex flex-row flex-wrap justify-content-evenly home__secciones ps-2 mb-5">
 
-        {% for seccion in lista_secciones %}
-        <a href="{% url 'portal:filtro_secciones' seccion.id %}"
-            class="home__secciones__link fs-5 me-5">{{seccion.descripcion}}</a>
-        {% endfor %}
 
-    </div>
-
-</div>
-
-<div class="container-fluid row">
-    <main class="col-lg-8 mb-5">
+<div class="container-fluid d-flex justify-content-center row mt-md-5">
+    <main class="col-lg-7 mb-5">
         <div id="carouselExampleCaptions" class="carousel slide mt-2 d-none d-md-block" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -62,6 +49,7 @@
             </div>
     </main>
 
+
     <aside class="col-lg-4 mt-2 mb-2">
         <h4 class="aside__ultimas text-uppercase align-items-center">Últimas notas</h4>
 
@@ -75,6 +63,23 @@
         {% endfor %}
 
     </aside>
+
+
+    <div class="container w-75 ps-2">
+        <h4 class="aside__ultimas text-uppercase text-center text-md-start mt-5">
+            Secciones
+        </h4>
+        <div
+            class="d-flex flex-row flex-wrap justify-content-center justify-content-md-evenly home__secciones ps-2 mb-5">
+
+            {% for seccion in lista_secciones %}
+            <a href="{% url 'portal:filtro_secciones' seccion.id %}"
+                class="home__secciones__link fs-5 me-3">{{seccion.descripcion}}</a>
+            {% endfor %}
+
+        </div>
+
+    </div>
 </div>
 
 
